@@ -58,12 +58,11 @@ export default function Header() {
               {item}
             </a>
           ))}
+          <div className="flex w-[202px] items-center gap-3 shrink-0 h-full">
+            <Button text="Sign in" variant="muted" size="small" />
+            <Button text="Register" variant="dark" size="small" />
+          </div>
         </nav>
-
-        <div className="flex w-[202px] items-center gap-3 shrink-0 h-full">
-          <Button text="Sign in" variant="muted" size="small" />
-          <Button text="Register" variant="dark" size="small" />
-        </div>
       </div>
     </header>
   );

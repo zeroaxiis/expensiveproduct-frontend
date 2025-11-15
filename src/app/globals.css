@@ -30,3 +30,43 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Lightweight inner-like text shadow utility (simulates inset depth) */
+
+.text-inner-shadow {
+  background-color: #1e1e1e;
+  color: transparent;
+  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* rotating gradient helper for buttons */
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.grad-rotate {
+  position: relative;
+  overflow: hidden;
+}
+.grad-rotate::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(32deg, #1e252b 19.01%, #9e9fa2 118.6%);
+  transform-origin: center;
+  animation: rotate360 10s linear infinite;
+  z-index: 0;
+}
+.grad-rotate > * {
+  position: relative;
+  z-index: 10;
+}

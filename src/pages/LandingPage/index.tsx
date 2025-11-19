@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Poppins } from "next/font/google";
-import Image from "next/image";
+import BlackHole from "./Components/BlackHole";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -86,13 +86,7 @@ const LandingPage = () => {
               </div>
             </div>
 
-            <Image
-              src="/earth.jpg"
-              alt="earth"
-              fill
-              sizes=" 100vw, 420px"
-              className="object-cover object-center"
-            />
+            <BlackHole />
           </div>
         </div>
       </section>

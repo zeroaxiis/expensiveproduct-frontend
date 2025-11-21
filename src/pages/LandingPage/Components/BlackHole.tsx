@@ -10,12 +10,15 @@ export default function BlackHole() {
   useEffect(() => {
     let mounted = true;
     let rafId: number | null = null;
-    let renderer: any = null;
-    let scene: any = null;
-    let camera: any = null;
-    let composer: any = null;
-    let controls: any = null;
+    let renderer: THREE.WebGLRenderer | null = null;
+    let scene: THREE.Scene | null = null;
+    let camera: THREE.PerspectiveCamera | null = null;
+    let composer: EffectComposer | null = null;
+    let controls: OrbitControls | null = null;
     let cleanup = () => {};
+    
+    type EffectComposer = InstanceType<typeof import("three/examples/jsm/postprocessing/EffectComposer.js").EffectComposer>;
+    type OrbitControls = InstanceType<typeof import("three/examples/jsm/controls/OrbitControls.js").OrbitControls>;
 
     (async () => {
       try {
@@ -63,12 +66,14 @@ export default function BlackHole() {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
         // Fallbacks for a couple renderer properties if not exposed in older three versions
         try {
-          (renderer as any).outputColorSpace =
-            (THREE as any).SRGBColorSpace ?? (renderer as any).outputEncoding;
-          (renderer as any).toneMapping =
-            (THREE as any).ACESFilmicToneMapping ??
-            (renderer as any).toneMapping;
-        } catch (e) {}
+          (renderer as THREE.WebGLRenderer & { outputColorSpace?: unknown }).outputColorSpace =
+            (THREE as typeof THREE & { SRGBColorSpace?: unknown }).SRGBColorSpace ?? renderer.outputEncoding;
+          renderer.toneMapping =
+            (THREE as typeof THREE & { ACESFilmicToneMapping?: unknown }).ACESFilmicToneMapping ??
+            renderer.toneMapping;
+        } catch {
+          // Fallback silently if properties don't exist
+        }
         renderer.toneMappingExposure = 1.2;
 
         const container = containerRef.current!;
@@ -95,7 +100,7 @@ export default function BlackHole() {
         );
         composer.addPass(bloomPass);
 
-        const lensingShader: any = {
+        const lensingShader = {
           uniforms: {
             tDiffuse: { value: null },
             blackHoleScreenPos: { value: new THREE.Vector2(0.5, 0.5) },
@@ -164,9 +169,9 @@ export default function BlackHole() {
         controls.update();
         // auto-rotate is enabled and stays on; no further sync needed
 
-        // Starfield
+        // Starfield - Optimized star count for better performance
         const starGeometry = new THREE.BufferGeometry();
-        const starCount = 150000;
+        const starCount = 15000;
         const starPositions = new Float32Array(starCount * 3);
         const starColors = new Float32Array(starCount * 3);
         const starSizes = new Float32Array(starCount);
@@ -468,7 +473,7 @@ export default function BlackHole() {
 
         // Resize handling: observe the container size so the renderer & camera
         // always match the component's actual layout (keeps black hole centered)
-        let resizeTimeout: any;
+        let resizeTimeout: ReturnType<typeof setTimeout> | undefined;
         const resizeObserver = new ResizeObserver(() => {
           clearTimeout(resizeTimeout);
           resizeTimeout = setTimeout(() => {
@@ -481,11 +486,19 @@ export default function BlackHole() {
             renderer.setSize(w, h, false);
             composer.setSize(w, h);
             try {
-              (bloomPass as any).resolution.set(w, h);
-            } catch (e) {}
+              if ('resolution' in bloomPass) {
+                (bloomPass as typeof bloomPass & { resolution: THREE.Vector2 }).resolution.set(w, h);
+              }
+            } catch {
+              // Silently handle if property doesn't exist
+            }
             try {
-              (lensingPass as any).uniforms.aspectRatio.value = w / h;
-            } catch (e) {}
+              if (lensingPass.uniforms && 'aspectRatio' in lensingPass.uniforms) {
+                lensingPass.uniforms.aspectRatio.value = w / h;
+              }
+            } catch {
+              // Silently handle if property doesn't exist
+            }
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
           }, 100);
         });
@@ -499,20 +512,24 @@ export default function BlackHole() {
           const elapsedTime = clock.getElapsedTime();
           const deltaTime = clock.getDelta();
 
-          (diskMaterial as any).uniforms.uTime.value = elapsedTime;
-          (starMaterial as any).uniforms.uTime.value = elapsedTime;
-          (eventHorizonMat as any).uniforms.uTime.value = elapsedTime;
-          (eventHorizonMat as any).uniforms.uCameraPosition.value.copy(
+          (diskMaterial.uniforms.uTime as { value: number }).value = elapsedTime;
+          (starMaterial.uniforms.uTime as { value: number }).value = elapsedTime;
+          (eventHorizonMat.uniforms.uTime as { value: number }).value = elapsedTime;
+          (eventHorizonMat.uniforms.uCameraPosition as { value: THREE.Vector3 }).value.copy(
             camera.position
           );
 
           blackHoleScreenPosVec3.copy(blackHoleMesh.position).project(camera);
           try {
-            (lensingPass as any).uniforms.blackHoleScreenPos.value.set(
-              (blackHoleScreenPosVec3.x + 1) / 2,
-              (blackHoleScreenPosVec3.y + 1) / 2
-            );
-          } catch (e) {}
+            if (lensingPass.uniforms && 'blackHoleScreenPos' in lensingPass.uniforms) {
+              lensingPass.uniforms.blackHoleScreenPos.value.set(
+                (blackHoleScreenPosVec3.x + 1) / 2,
+                (blackHoleScreenPosVec3.y + 1) / 2
+              );
+            }
+          } catch {
+            // Silently handle if property doesn't exist
+          }
 
           controls.update();
 
@@ -530,28 +547,41 @@ export default function BlackHole() {
           if (typeof resizeObserver !== "undefined" && resizeObserver) {
             try {
               resizeObserver.disconnect();
-            } catch {}
+            } catch {
+              // Silently handle disconnect errors
+            }
           }
           if (rafId) cancelAnimationFrame(rafId);
-          if (composer && (composer as any).dispose) {
+          if (composer && 'dispose' in composer && typeof composer.dispose === 'function') {
             try {
-              (composer as any).dispose();
-            } catch {}
+              composer.dispose();
+            } catch {
+              // Silently handle disposal errors
+            }
           }
           if (renderer) {
             try {
-              if ((renderer as any).forceContextLoss)
-                (renderer as any).forceContextLoss();
-            } catch {}
+              const ctx = renderer.getContext();
+              if (ctx && 'getExtension' in ctx) {
+                const loseCtx = ctx.getExtension('WEBGL_lose_context');
+                if (loseCtx && 'loseContext' in loseCtx) {
+                  loseCtx.loseContext();
+                }
+              }
+            } catch {
+              // Silently handle context loss errors
+            }
             try {
               if (renderer.domElement && renderer.domElement.remove)
                 renderer.domElement.remove();
-            } catch {}
+            } catch {
+              // Silently handle DOM removal errors
+            }
           }
         };
-      } catch (e: any) {
+      } catch (e: unknown) {
         console.error("Failed to initialize three.js visual:", e);
-        if (mounted) setError(String(e.message ?? e));
+        if (mounted) setError(String((e as Error).message ?? e));
       }
     })();
 

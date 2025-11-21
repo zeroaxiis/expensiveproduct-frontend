@@ -62,7 +62,10 @@ export default function BlackHole() {
         // Position Y higher than the disk so we view from above (not below).
         camera.position.set(0, 4.5, 6.5);
 
-        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer = new THREE.WebGLRenderer({ 
+          antialias: true,
+          powerPreference: "high-performance"
+        });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
         // Fallbacks for a couple renderer properties if not exposed in older three versions
         try {
@@ -272,11 +275,11 @@ export default function BlackHole() {
         const stars = new THREE.Points(starGeometry, starMaterial);
         scene.add(stars);
 
-        // Event horizon + black hole
+        // Event horizon + black hole - Optimized geometry resolution
         const eventHorizonGeom = new THREE.SphereGeometry(
           BLACK_HOLE_RADIUS * 1.05,
-          128,
-          64
+          64,
+          32
         );
         const eventHorizonMat = new THREE.ShaderMaterial({
           uniforms: {
@@ -319,19 +322,20 @@ export default function BlackHole() {
 
         const blackHoleGeom = new THREE.SphereGeometry(
           BLACK_HOLE_RADIUS,
-          128,
-          64
+          64,
+          32
         );
         const blackHoleMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
         const blackHoleMesh = new THREE.Mesh(blackHoleGeom, blackHoleMat);
         blackHoleMesh.renderOrder = 0;
         scene.add(blackHoleMesh);
 
+        // Accretion disk - Optimized geometry resolution for better performance
         const diskGeometry = new THREE.RingGeometry(
           DISK_INNER_RADIUS,
           DISK_OUTER_RADIUS,
-          256,
-          128
+          128,
+          64
         );
         const diskMaterial = new THREE.ShaderMaterial({
           uniforms: {

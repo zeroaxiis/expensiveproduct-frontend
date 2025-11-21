@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type * as THREE from "three";
+import type { WebGLRenderer, Scene, PerspectiveCamera } from "three";
 
 // Type definitions for dynamically imported Three.js modules
 type EffectComposer = InstanceType<typeof import("three/examples/jsm/postprocessing/EffectComposer.js").EffectComposer>;
@@ -15,9 +15,9 @@ export default function BlackHole() {
   useEffect(() => {
     let mounted = true;
     let rafId: number | null = null;
-    let renderer: THREE.WebGLRenderer | null = null;
-    let scene: THREE.Scene | null = null;
-    let camera: THREE.PerspectiveCamera | null = null;
+    let renderer: WebGLRenderer | null = null;
+    let scene: Scene | null = null;
+    let camera: PerspectiveCamera | null = null;
     let composer: EffectComposer | null = null;
     let controls: OrbitControls | null = null;
     let cleanup = () => {};
@@ -69,13 +69,14 @@ export default function BlackHole() {
           powerPreference: "high-performance"
         });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-        // Fallbacks for a couple renderer properties if not exposed in older three versions
+        // Set renderer properties with fallbacks for older three.js versions
         try {
-          (renderer as THREE.WebGLRenderer & { outputColorSpace?: unknown }).outputColorSpace =
-            (THREE as typeof THREE & { SRGBColorSpace?: unknown }).SRGBColorSpace ?? renderer.outputEncoding;
-          renderer.toneMapping =
-            (THREE as typeof THREE & { ACESFilmicToneMapping?: unknown }).ACESFilmicToneMapping ??
-            renderer.toneMapping;
+          if ('SRGBColorSpace' in THREE) {
+            (renderer as WebGLRenderer & { outputColorSpace?: unknown }).outputColorSpace = THREE.SRGBColorSpace;
+          }
+          if ('ACESFilmicToneMapping' in THREE) {
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+          }
         } catch {
           // Fallback silently if properties don't exist
         }
@@ -586,7 +587,10 @@ export default function BlackHole() {
         };
       } catch (e: unknown) {
         console.error("Failed to initialize three.js visual:", e);
-        if (mounted) setError(String((e as Error).message ?? e));
+        if (mounted) {
+          const errorMessage = e instanceof Error ? e.message : String(e);
+          setError(errorMessage);
+        }
       }
     })();
 

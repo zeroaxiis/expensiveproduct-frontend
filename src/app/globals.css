@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #d3d3d3;
+  --fade-in-delay: 40ms;
 }
 
 @theme inline {

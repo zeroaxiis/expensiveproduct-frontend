@@ -567,10 +567,8 @@ export default function BlackHole() {
           }
           if (renderer) {
             try {
-              // Properly dispose of WebGL context using the standard extension
-              const ctx = renderer.getContext() as WebGLRenderingContext & { 
-                getExtension(name: 'WEBGL_lose_context'): { loseContext(): void } | null 
-              };
+              // Properly dispose of WebGL context using the standard WEBGL_lose_context extension
+              const ctx = renderer.getContext();
               const loseCtx = ctx.getExtension('WEBGL_lose_context');
               if (loseCtx) {
                 loseCtx.loseContext();

@@ -11,7 +11,7 @@ const LandingPage = () => {
       className={`${poppins.className} flex items-center justify-center py-16 px-6`}
     >
       <section
-        className="w-[90%] h-[660px] max-w-none flex gap-8 items-stretch opacity-0 translate-y-2 animate-[fadeInUp_1s_ease-out_40ms_forwards]"
+        className="w-[90%] h-[660px] max-w-none flex gap-8 items-stretch opacity-0 translate-y-2 animate-[fadeInUp_1s_ease-out_var(--fade-in-delay)_forwards]"
       >
         {/* Left text column */}
         <div className="w-3/5 flex-1 flex items-center rounded-2xl box-border px-10 bg-black/10 backdrop-blur-md border-2 border-white/20 shadow-lg">

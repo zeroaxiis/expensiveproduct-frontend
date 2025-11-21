@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Poppins } from "next/font/google";
-import BlackHole from "./BlackHole";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "700"] });
 

@@ -1,6 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type * as THREE from "three";
+
+// Type definitions for dynamically imported Three.js modules
+type EffectComposer = InstanceType<typeof import("three/examples/jsm/postprocessing/EffectComposer.js").EffectComposer>;
+type OrbitControls = InstanceType<typeof import("three/examples/jsm/controls/OrbitControls.js").OrbitControls>;
 
 export default function BlackHole() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -16,9 +21,6 @@ export default function BlackHole() {
     let composer: EffectComposer | null = null;
     let controls: OrbitControls | null = null;
     let cleanup = () => {};
-    
-    type EffectComposer = InstanceType<typeof import("three/examples/jsm/postprocessing/EffectComposer.js").EffectComposer>;
-    type OrbitControls = InstanceType<typeof import("three/examples/jsm/controls/OrbitControls.js").OrbitControls>;
 
     (async () => {
       try {
@@ -565,12 +567,13 @@ export default function BlackHole() {
           }
           if (renderer) {
             try {
-              const ctx = renderer.getContext();
-              if (ctx && 'getExtension' in ctx) {
-                const loseCtx = ctx.getExtension('WEBGL_lose_context');
-                if (loseCtx && 'loseContext' in loseCtx) {
-                  loseCtx.loseContext();
-                }
+              // Properly dispose of WebGL context using the standard extension
+              const ctx = renderer.getContext() as WebGLRenderingContext & { 
+                getExtension(name: 'WEBGL_lose_context'): { loseContext(): void } | null 
+              };
+              const loseCtx = ctx.getExtension('WEBGL_lose_context');
+              if (loseCtx) {
+                loseCtx.loseContext();
               }
             } catch {
               // Silently handle context loss errors

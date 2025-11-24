@@ -29,7 +29,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const base =
-      "inline-flex items-center justify-center gap-2 transition-transform active:translate-y-[1px]";
+      "inline-flex items-center justify-center gap-2 transition-transform active:translate-y-[1px] cursor-pointer";
 
     const sizeClass =
       size === "small"
@@ -62,6 +62,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       alignItems: "center",
       gap: "var(--sds-size-space-200)",
       borderRadius: "var(--sds-size-radius-200)",
+      cursor: "pointer",
     };
 
     let variantStyle: React.CSSProperties = {};

@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Button from "./component/Button";
-import { useBackgroundColor } from "../Components/ChangeBackground";
+import Button from "./Button";
+import { useBackgroundColor } from "@/src/app/components/ChangeBackground";
 
 const NAV_ITEMS = ["Solutions", "Resources", "Pricing", "Contact Us"];
 
@@ -32,7 +32,6 @@ export default function Header() {
             className={`flex w-10 justify-center items-center shrink-0 transition-colors duration-200 ${logoColorClass}`}
             aria-label="logo"
           >
-            {/* Placeholder logo - replace with real SVG/image */}
             <svg
               width="24"
               height="24"
@@ -78,7 +77,6 @@ export default function Header() {
 
         {/* Mobile Layout */}
         <div className="flex md:hidden w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-4 items-center justify-between">
-          {/* Logo */}
           <div
             className={`flex w-10 justify-center items-center shrink-0 transition-colors duration-200 ${logoColorClass}`}
             aria-label="logo"
@@ -106,7 +104,6 @@ export default function Header() {
             </svg>
           </div>
 
-          {/* Hamburger Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={`flex flex-col gap-1.5 w-8 h-8 justify-center items-center rounded-md transition-colors duration-200 ${hoverBgClass}`}

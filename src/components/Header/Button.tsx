@@ -9,7 +9,7 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text?: React.ReactNode;
   variant?: Variant;
-  color?: string; // used when variant === 'custom'
+  color?: string;
   size?: Size;
   fullWidth?: boolean;
 }
@@ -118,36 +118,3 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 
 export default Button;
-
-function getReadableTextColor(bg: string) {
-  try {
-    const rgb = parseSimpleColor(bg);
-    const lum = (0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b) / 255;
-    return lum > 0.6 ? "#000000" : "#ffffff";
-  } catch {
-    return "#ffffff";
-  }
-}
-
-function parseSimpleColor(input: string) {
-  const s = input.trim();
-  if (s.startsWith("#")) {
-    if (s.length === 7) {
-      return {
-        r: parseInt(s.slice(1, 3), 16),
-        g: parseInt(s.slice(3, 5), 16),
-        b: parseInt(s.slice(5, 7), 16),
-      };
-    }
-    if (s.length === 4) {
-      return {
-        r: parseInt(s[1] + s[1], 16),
-        g: parseInt(s[2] + s[2], 16),
-        b: parseInt(s[3] + s[3], 16),
-      };
-    }
-  }
-  const m = s.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
-  if (m) return { r: Number(m[1]), g: Number(m[2]), b: Number(m[3]) };
-  throw new Error("unsupported color format");
-}

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Container } from "@/src/app/components/container";
-import { useSectionVisibility } from "@/src/pages/LandingPage/Components/ChangeBackground/useSectionVisibility";
+import { useSectionVisibility } from "@/src/app/components/ChangeBackground/useSectionVisibility";
 
 const BenefitsSection = () => {
   const sectionRef = useSectionVisibility("bg-black", 0.5);

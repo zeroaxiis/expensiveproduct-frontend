@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react";
 import { Poppins } from "next/font/google";
 import { Container } from "@/src/app/components/container";
+import { useSectionVisibility } from "@/src/common/components/ChangeBackground/useSectionVisibility";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 const LandingPage = () => {
   const [show, setShow] = useState(false);
+  const sectionRef = useSectionVisibility("bg-white", 0.5);
 
   useEffect(() => {
     const t = setTimeout(() => setShow(true), 40);
@@ -15,8 +17,9 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <Container className="min-h-screen py-12 px-4 text-white">
+    <Container className="bg-white rounded-3xl  min-h-screen py-12 px-4 text-white">
       <main
+        ref={sectionRef}
         className={`${poppins.className} flex items-center justify-center py-16 px-6`}
       >
         <section

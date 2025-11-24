@@ -1,9 +1,14 @@
+"use client";
+
 import React from "react";
 import { Container } from "@/src/app/components/container";
+import { useSectionVisibility } from "@/src/common/components/ChangeBackground/useSectionVisibility";
 
 const BenefitsSection = () => {
+  const sectionRef = useSectionVisibility("bg-black", 0.5);
+
   return (
-    <section className=" py-20">
+    <section ref={sectionRef} className=" py-20">
       <Container className="bg-black py-20 rounded-3xl">
         <div className="flex flex-col items-center gap-12">
           {/* Hero Text */}
@@ -17,10 +22,10 @@ const BenefitsSection = () => {
           <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl">
             {/* Card 1 - Reliable Clarity */}
             <div className="flex flex-col gap-4 p-8 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm">
-              <h3 className="text-white font-poppins text-2xl font-semibold text-center">
+              <h3 className="text-white font-poppins text-2xl font-normal text-center">
                 Reliable Clarity
               </h3>
-              <p className="text-white/90 font-poppins text-base font-normal text-center leading-relaxed">
+              <p className="text-white/90 font-poppins text-base font-extralight text-center leading-relaxed">
                 Get complete visibility over every expense, budget, and category
                 in real time. No guesswork, no confusion—just transparent
                 financial tracking that keeps you in control.
@@ -29,10 +34,10 @@ const BenefitsSection = () => {
 
             {/* Card 2 - Accuracy You Can Count On */}
             <div className="flex flex-col gap-4 p-8 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm">
-              <h3 className="text-white font-poppins text-2xl font-semibold text-center">
+              <h3 className="text-white font-poppins text-2xl font-normal text-center">
                 Accuracy You Can Count On
               </h3>
-              <p className="text-white/90 font-poppins text-base font-normal text-center leading-relaxed">
+              <p className="text-white/90 font-poppins text-base font-thin text-center leading-relaxed">
                 Expenses are categorized precisely and protected through secure,
                 encrypted storage. If something goes wrong, we fix it—because
                 your finances deserve reliable accuracy.
@@ -41,10 +46,10 @@ const BenefitsSection = () => {
 
             {/* Card 3 - Effortlessly Smart */}
             <div className="flex flex-col gap-4 p-8 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm">
-              <h3 className="text-white font-poppins text-2xl font-semibold text-center">
+              <h3 className="text-white font-poppins text-2xl font-normal text-center">
                 Effortlessly Smart
               </h3>
-              <p className="text-white/90 font-poppins text-base font-normal text-center leading-relaxed">
+              <p className="text-white/90 font-poppins text-base font-thin text-center leading-relaxed">
                 Complex financial tasks are simplified into quick, automated
                 actions. Budgets update, reminders track deadlines, and insights
                 appear without any manual effort.
@@ -53,10 +58,10 @@ const BenefitsSection = () => {
 
             {/* Card 4 - Insights That Drive Decisions */}
             <div className="flex flex-col gap-4 p-8 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm">
-              <h3 className="text-white font-poppins text-2xl font-semibold text-center">
+              <h3 className="text-white font-poppins text-2xl font-normal text-center">
                 Insights That Drive Decisions
               </h3>
-              <p className="text-white/90 font-poppins text-base font-normal text-center leading-relaxed">
+              <p className="text-white/90 font-poppins text-base font-thin text-center leading-relaxed">
                 Turn your spending patterns into powerful financial decisions.
                 See trends, eliminate wasteful costs, and plan confidently with
                 analytics that support real progress.

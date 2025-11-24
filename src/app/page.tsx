@@ -1,8 +1,8 @@
 "use client";
 
-import Header from "../common/components/Header";
+import Header from "../pages/LandingPage/Header";
 import LandingPage from "../pages/LandingPage";
-import { BackgroundProvider } from "../common/components/ChangeBackground";
+import { BackgroundProvider } from "../pages/LandingPage/Components/ChangeBackground";
 
 export default function Home() {
   return (

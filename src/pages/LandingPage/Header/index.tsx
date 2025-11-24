@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Button from "./component/Button";
-import { useBackgroundColor } from "../ChangeBackground";
+import { useBackgroundColor } from "../Components/ChangeBackground";
 
 const NAV_ITEMS = ["Solutions", "Resources", "Pricing", "Contact Us"];
 

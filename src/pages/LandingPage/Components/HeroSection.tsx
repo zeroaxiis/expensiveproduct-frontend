@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Poppins } from "next/font/google";
 import { Container } from "@/src/app/components/container";
-import { useSectionVisibility } from "@/src/common/components/ChangeBackground/useSectionVisibility";
+import { useSectionVisibility } from "@/src/pages/LandingPage/Components/ChangeBackground/useSectionVisibility";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "700"] });
 

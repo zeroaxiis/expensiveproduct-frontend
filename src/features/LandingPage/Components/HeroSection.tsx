@@ -17,37 +17,37 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <Container className="bg-white rounded-3xl  min-h-screen py-12 px-4 text-white">
+    <Container className="bg-white rounded-3xl min-h-screen py-6 sm:py-12 px-4 text-white">
       <main
         ref={sectionRef}
-        className={`${poppins.className} flex items-center justify-center py-16 px-6`}
+        className={`${poppins.className} flex items-center justify-center py-8 sm:py-16 px-2 sm:px-6`}
       >
         <section
-          className={`h-[660px] flex gap-8 items-stretch ${
+          className={`w-full max-w-full flex flex-col lg:flex-row gap-4 sm:gap-8 items-stretch ${
             show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           } transition-all duration-1000 ease-out`}
         >
           {/* Left text column */}
-          <div className="w-3/5 flex-1 flex items-center rounded-2xl box-border px-10 bg-black/10 backdrop-blur-md border-2 border-white/20 shadow-lg">
-            <div className="w-4/5 flex flex-col ">
-              <h2 className="text-[#1E1E1E] text-[44px] leading-[1.05] font-medium m-0">
+          <div className="w-full lg:w-3/5 flex-1 flex items-center rounded-2xl box-border px-4 sm:px-6 lg:px-10 py-6 sm:py-8 bg-black/10 backdrop-blur-md border-2 border-white/20 shadow-lg min-h-[400px] lg:min-h-[660px]">
+            <div className="w-full lg:w-4/5 flex flex-col">
+              <h2 className="text-[#1E1E1E] text-2xl sm:text-3xl lg:text-[44px] leading-tight lg:leading-[1.05] font-medium m-0">
                 Revolutionize Your Money through AI solution with
               </h2>
-              <h3 className="text-[#1E1E1E] text-[44px] leading-[1.05] font-extrabold m-0 text-inner-shadow">
+              <h3 className="text-[#1E1E1E] text-2xl sm:text-3xl lg:text-[44px] leading-tight lg:leading-[1.05] font-extrabold m-0 text-inner-shadow">
                 Expensive Product
               </h3>
 
-              <p className="pt-[60px] text-[#595959] text-[19px] font-medium w-full ">
+              <p className="pt-6 sm:pt-10 lg:pt-15 text-[#595959] text-base sm:text-lg lg:text-[19px] font-medium w-full">
                 Empowering your financial journey with cutting-edge technology,
                 seamless transactions, and smarter investments.
               </p>
-              <div className="mt-[160px]">
+              <div className="mt-8 sm:mt-16 lg:mt-40">
                 {/* Get Started Today Button */}
                 <div className="relative inline-flex items-center justify-center gap-4 group">
                   <div className="absolute inset-0 duration-1000 opacity-60 transition-all bg-gradient-to-r from-indigo-500 via-pink-500 to-yellow-400 rounded-xl blur-lg filter group-hover:opacity-100 group-hover:duration-200"></div>
                   <a
                     role="button"
-                    className="group relative inline-flex items-center justify-center text-base rounded-xl bg-gray-900 px-8 py-3 font-semibold text-white transition-all duration-200 hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5 hover:shadow-gray-600/30"
+                    className="group relative inline-flex items-center justify-center text-sm sm:text-base rounded-xl bg-gray-900 px-6 sm:px-8 py-2.5 sm:py-3 font-semibold text-white transition-all duration-200 hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5 hover:shadow-gray-600/30 whitespace-nowrap"
                     title="payment"
                     href="#"
                   >
@@ -76,14 +76,14 @@ const LandingPage = () => {
           </div>
 
           {/* Right image column */}
-          <div className="flex-none w-2/5 rounded-2xl overflow-hidden flex flex-col justify-center items-center bg-neutral-900">
+          <div className="w-full lg:w-2/5 flex-none rounded-2xl overflow-hidden flex flex-col justify-center items-center bg-neutral-900 min-h-[300px] lg:min-h-[660px]">
             <div className="w-full h-full relative overflow-hidden rounded-2xl">
               {/* Contact button*/}
-              <div className="absolute top-4 right-4 z-20">
+              <div className="absolute top-2 sm:top-4 right-2 sm:right-4 z-20">
                 <div className="rounded-lg p-[2px] bg-gradient-to-r">
                   <button
                     type="button"
-                    className="bg-white text-black rounded-md px-4 py-2 text-sm font-medium shadow-md hover:shadow-lg focus:outline-none cursor-default hover:cursor-pointer transition-transform duration-150 hover:-translate-y-0.5"
+                    className="bg-white text-black rounded-md px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium shadow-md hover:shadow-lg focus:outline-none cursor-default hover:cursor-pointer transition-transform duration-150 hover:-translate-y-0.5"
                   >
                     Contact us
                   </button>

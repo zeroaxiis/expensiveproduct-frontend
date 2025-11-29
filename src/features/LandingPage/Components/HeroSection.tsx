@@ -20,7 +20,7 @@ const LandingPage = () => {
     <Container className="bg-white rounded-2xl min-h-screen py-6 sm:py-12 px-4 text-white">
       <main
         ref={sectionRef}
-        className={`${poppins.className} flex items-center justify-center py-8 sm:py-16 px-2 sm:px-6`}
+        className={`${poppins.className} flex items-center justify-center py-8 sm:py-16 px-2 sm:px-6 mt-16 sm:mt-20 lg:mt-24`}
       >
         <section
           className={`w-full max-w-full flex flex-col lg:flex-row gap-4 sm:gap-8 items-stretch ${

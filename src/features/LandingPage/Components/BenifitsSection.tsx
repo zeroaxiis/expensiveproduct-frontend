@@ -9,7 +9,7 @@ const BenefitsSection = () => {
 
   return (
     <section ref={sectionRef} className=" py-20">
-      <Container className="bg-black py-20 rounded-3xl">
+      <Container className="bg-black py-20 rounded-2xl">
         <div className="flex flex-col items-center gap-12">
           {/* Hero Text */}
           <h2 className="text-center font-poppins text-4xl md:text-5xl font-normal max-w-4xl leading-tight bg-gradient-to-r from-gray-400/70 via-white to-gray-400/70 bg-clip-text text-transparent">

@@ -17,7 +17,7 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <Container className="bg-white rounded-3xl min-h-screen py-6 sm:py-12 px-4 text-white">
+    <Container className="bg-white rounded-2xl min-h-screen py-6 sm:py-12 px-4 text-white">
       <main
         ref={sectionRef}
         className={`${poppins.className} flex items-center justify-center py-8 sm:py-16 px-2 sm:px-6`}

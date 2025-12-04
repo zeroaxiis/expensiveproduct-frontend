@@ -17,10 +17,10 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <Container className="bg-white rounded-2xl min-h-screen py-6 sm:py-12 px-4 text-white">
+    <Container className="bg-white rounded-2xl min-h-screen sm:py-12 px-4 text-white">
       <main
         ref={sectionRef}
-        className={`${poppins.className} flex items-center justify-center py-8 sm:py-16 px-2 sm:px-6 mt-16 sm:mt-20 lg:mt-24`}
+        className={`${poppins.className} flex items-center justify-center sm:py-16 px-2 sm:px-6 mt-16 sm:mt-20 lg:mt-24`}
       >
         <section
           className={`w-full max-w-full flex flex-col lg:flex-row gap-4 sm:gap-8 items-stretch ${
@@ -34,7 +34,7 @@ const LandingPage = () => {
                 Revolutionize Your Money through AI solution with
               </h2>
               <h3 className="text-[#1E1E1E] text-2xl sm:text-3xl lg:text-[44px] leading-tight lg:leading-[1.05] font-extrabold m-0 text-inner-shadow">
-                Expensive Product
+                Trovv
               </h3>
 
               <p className="pt-6 sm:pt-10 lg:pt-15 text-[#595959] text-base sm:text-lg lg:text-[19px] font-medium w-full">

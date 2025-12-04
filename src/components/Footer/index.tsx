@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Container } from "@/src/app/components/container";
 import { useSectionVisibility } from "@/src/app/components/ChangeBackground/useSectionVisibility";
 import { FeatureCards } from "./cards";
@@ -14,7 +15,7 @@ export default function Footer() {
           {/* Header with Title and Social Icons */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8 sm:mb-10 lg:mb-12">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-['Poppins'] text-black leading-tight">
-              Expensive Product
+              Trovv
             </h1>
 
             {/* Social Icons */}
@@ -118,7 +119,7 @@ export default function Footer() {
                     href="#"
                     className="text-sm text-gray-600 hover:text-black transition-colors font-['Poppins']"
                   >
-                    Expensive Product
+                    Trovv
                   </a>
                 </li>
               </ul>
@@ -131,36 +132,36 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="text-sm text-gray-600 hover:text-black transition-colors font-['Poppins']"
                   >
-                    Expensive Product
-                  </a>
+                    Trovv
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/our-story"
                     className="text-sm text-gray-600 hover:text-black transition-colors font-['Poppins']"
                   >
                     Our Story
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/contact-us"
                     className="text-sm text-gray-600 hover:text-black transition-colors font-['Poppins']"
                   >
                     Contact Us
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/newsletter"
                     className="text-sm text-gray-600 hover:text-black transition-colors font-['Poppins']"
                   >
-                    Blogs
-                  </a>
+                    News Letter
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -172,36 +173,36 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/terms-and-privacy"
                     className="text-sm text-gray-600 hover:text-black transition-colors font-['Poppins']"
                   >
                     Terms & Condition
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/terms-and-privacy"
                     className="text-sm text-gray-600 hover:text-black transition-colors font-['Poppins']"
                   >
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/refund-policy"
                     className="text-sm text-gray-600 hover:text-black transition-colors font-['Poppins']"
                   >
-                    Investor Awareness
-                  </a>
+                    Refund & Cancellation Policy
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/security-policy"
                     className="text-sm text-gray-600 hover:text-black transition-colors font-['Poppins']"
                   >
-                    Risk Disclosure & Disclaimers
-                  </a>
+                    Security & Data Protection
+                  </Link>
                 </li>
               </ul>
             </div>

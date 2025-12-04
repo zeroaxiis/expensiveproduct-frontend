@@ -1,4 +1,4 @@
-# Expensive Product - Frontend
+# Trovv - Frontend
 
 A modern, responsive landing page built with Next.js 16, featuring AI-powered financial solutions with smooth animations and dynamic theming.
 

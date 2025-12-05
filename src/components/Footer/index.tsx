@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header with Title and Social Icons */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8 sm:mb-10 lg:mb-12">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-['Poppins'] text-black leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-['Alkatra'] text-black leading-tight">
               Trovv
             </h1>
 
@@ -117,7 +117,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-sm text-gray-600 hover:text-black transition-colors font-['Poppins']"
+                    className="text-sm text-gray-600 hover:text-black transition-colors font-['Poppins'] "
                   >
                     Trovv
                   </a>
@@ -134,7 +134,7 @@ export default function Footer() {
                 <li>
                   <Link
                     href="/"
-                    className="text-sm text-gray-600 hover:text-black transition-colors font-['Poppins']"
+                    className="text-sm text-gray-600 hover:text-black transition-colors font-['Poppins'] "
                   >
                     Trovv
                   </Link>

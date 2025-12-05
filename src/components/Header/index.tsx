@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import Button from "./Button";
 import { useBackgroundColor } from "@/src/app/components/ChangeBackground";
 
@@ -13,7 +14,6 @@ export default function Header() {
   const isBlackBackground = backgroundColor === "bg-black";
   const headerBgClass = isBlackBackground ? "bg-black" : "bg-white";
   const textColorClass = isBlackBackground ? "text-white" : "text-gray-800";
-  const logoColorClass = isBlackBackground ? "text-white" : "text-gray-900";
   const hoverBgClass = isBlackBackground
     ? "hover:bg-zinc-800"
     : "hover:bg-gray-200";
@@ -28,32 +28,15 @@ export default function Header() {
       >
         {/* Desktop/Tablet Layout */}
         <div className="hidden md:flex w-full max-w-[1440px] mx-auto py-4 items-center gap-4 md:gap-10 flex-wrap">
-          <div
-            className={`flex w-10 justify-center items-center shrink-0 transition-colors duration-200 ${logoColorClass}`}
-            aria-label="logo"
+          <Link
+            href="/"
+            className="flex justify-center items-center shrink-0"
+            aria-label="Trovv logo"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
-              <path
-                d="M8 12h8"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
-          </div>
+            <span className="font-['Alkatra'] text-2xl font-bold text-[#1591EA]">
+              Trovv
+            </span>
+          </Link>
 
           <nav
             className="flex justify-end items-start align-top gap-x-1 sm:gap-x-2 gap-y-2 flex-1 flex-wrap font-['Poppins'] font-light"
@@ -77,32 +60,15 @@ export default function Header() {
 
         {/* Mobile Layout */}
         <div className="flex md:hidden w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-4 items-center justify-between">
-          <div
-            className={`flex w-10 justify-center items-center shrink-0 transition-colors duration-200 ${logoColorClass}`}
-            aria-label="logo"
+          <Link
+            href="/"
+            className="flex justify-center items-center shrink-0"
+            aria-label="Trovv logo"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
-              <path
-                d="M8 12h8"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
-          </div>
+            <span className="font-['Alkatra'] text-2xl font-bold text-[#1591EA]">
+              Trovv
+            </span>
+          </Link>
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}

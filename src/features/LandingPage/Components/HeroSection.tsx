@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Poppins } from "next/font/google";
 import { Container } from "@/src/app/components/container";
 import { useSectionVisibility } from "@/src/app/components/ChangeBackground/useSectionVisibility";
+import { MovingBorderButton } from "@/src/app/components/moving-border-button";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -17,10 +19,10 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <Container className="bg-white rounded-2xl min-h-screen sm:py-12 px-4 text-white">
+    <Container className="bg-white rounded-2xl py-4 sm:py-12 px-0 text-white">
       <main
         ref={sectionRef}
-        className={`${poppins.className} flex items-center justify-center sm:py-16 px-2 sm:px-6 mt-16 sm:mt-20 lg:mt-24`}
+        className={`${poppins.className} flex items-start justify-center py-4 sm:py-16 px-0 mt-16 sm:mt-20 lg:mt-24 `}
       >
         <section
           className={`w-full max-w-full flex flex-col lg:flex-row gap-4 sm:gap-8 items-stretch ${
@@ -33,7 +35,7 @@ const LandingPage = () => {
               <h2 className="text-[#1E1E1E] text-2xl sm:text-3xl lg:text-[44px] leading-tight lg:leading-[1.05] font-medium m-0">
                 Revolutionize Your Money through AI solution with
               </h2>
-              <h3 className="text-[#1E1E1E] text-2xl sm:text-3xl lg:text-[44px] leading-tight lg:leading-[1.05] font-extrabold m-0 text-inner-shadow">
+              <h3 className="text-[#1E1E1E] text-5xl sm:text-3xl lg:text-[72px] leading-tight lg:leading-[1.05] font-extrabold m-0 text-inner-shadow font-['Alkatra']">
                 Trovv
               </h3>
 
@@ -76,9 +78,9 @@ const LandingPage = () => {
           </div>
 
           {/* Right image column */}
-          <div className="w-full lg:w-2/5 flex-none rounded-2xl overflow-hidden flex flex-col justify-center items-center bg-neutral-900 min-h-[300px] lg:min-h-[660px]">
-            <div className="w-full h-full relative overflow-hidden rounded-2xl">
-              {/* Contact button*/}
+          <div className="w-full lg:w-2/5 flex-none rounded-2xl overflow-hidden flex flex-col justify-center items-center bg-neutral-900 min-h-[500px] lg:min-h-[660px]">
+            <div className="w-full h-full relative overflow-visible rounded-2xl min-h-[500px] lg:min-h-[660px]">
+              {/* Contact button - top right */}
               <div className="absolute top-2 sm:top-4 right-2 sm:right-4 z-20">
                 <div className="rounded-lg p-[2px] bg-gradient-to-r">
                   <button
@@ -90,7 +92,43 @@ const LandingPage = () => {
                 </div>
               </div>
 
-              {/* Right content image will be added here */}
+              {/* AI Chatbot button - bottom left */}
+              <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 z-20 group">
+                <MovingBorderButton
+                  type="button"
+                  className="flex items-center bg-black lg:bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 ease-out overflow-hidden lg:pr-0 pr-4 sm:pr-6 lg:group-hover:pr-4 lg:group-hover:pr-6"
+                >
+                  {/* Circular icon container */}
+                  <div className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-white lg:bg-white flex-shrink-0">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M17 2H13V1H11V2H7C5.34315 2 4 3.34315 4 5V8C4 10.7614 6.23858 13 9 13H15C17.7614 13 20 10.7614 20 8V5C20 3.34315 18.6569 2 17 2ZM11 7.5C11 8.32843 10.3284 9 9.5 9C8.67157 9 8 8.32843 8 7.5C8 6.67157 8.67157 6 9.5 6C10.3284 6 11 6.67157 11 7.5ZM16 7.5C16 8.32843 15.3284 9 14.5 9C13.6716 9 13 8.32843 13 7.5C13 6.67157 13.6716 6 14.5 6C15.3284 6 16 6.67157 16 7.5ZM4 22C4 17.5817 7.58172 14 12 14C16.4183 14 20 17.5817 20 22H4Z"
+                        fill="black"
+                      />
+                    </svg>
+                  </div>
+
+                  {/* Text that slides in from left */}
+                  <span className="whitespace-nowrap text-white text-xs sm:text-sm font-medium lg:max-w-0 max-w-xs lg:group-hover:max-w-xs transition-all duration-500 ease-out overflow-hidden ml-3 lg:ml-0 lg:group-hover:ml-3">
+                    Discover How We Can Help You!
+                  </span>
+                </MovingBorderButton>
+              </div>
+
+              {/* Right content image */}
+              <Image
+                src="/HeroSection.png"
+                alt="Trovv Hero"
+                fill
+                className="object-cover object-bottom"
+                priority
+              />
             </div>
           </div>
         </section>

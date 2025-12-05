@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { BotIcon, Mail } from "lucide-react";
 import { Container } from "@/src/app/components/container";
 import { useSectionVisibility } from "@/src/app/components/ChangeBackground/useSectionVisibility";
+import NavigationButton from "@/src/app/components/navigation-button";
 
 const faqData = [
   {
@@ -52,10 +54,10 @@ export default function FAQs() {
   };
 
   return (
-    <Container className="bg-white py-12 sm:py-16 lg:py-20 rounded-2xl ">
+    <Container className="bg-white py-12 sm:py-16 lg:py-20 rounded-2xl mb-16 sm:mb-20 lg:mb-24">
       <section
         ref={sectionRef}
-        className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full max-w-7xl py-20 mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left side - FAQs */}
@@ -95,13 +97,19 @@ export default function FAQs() {
                     </svg>
                   </button>
 
-                  {openId === faq.id && (
+                  <div
+                    className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                      openId === faq.id
+                        ? "max-h-96 opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
                     <div className="px-6 pb-5 sm:px-8 sm:pb-6 pt-0">
                       <p className="text-sm sm:text-base text-gray-600 font-['Poppins'] font-light leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>
-                  )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -135,39 +143,20 @@ export default function FAQs() {
 
                 {/* Action buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-                  <button className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-black text-white rounded-xl font-medium hover:bg-gray-800 transition-colors duration-200 font-['Poppins'] text-sm sm:text-base min-w-40 cursor-pointer">
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                      />
-                    </svg>
-                    Chat with us
-                  </button>
-
-                  <button className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-black border-2 border-black rounded-xl font-medium hover:bg-gray-50 transition-colors duration-200 font-['Poppins'] text-sm sm:text-base min-w-40 cursor-pointer">
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
-                    Email us
-                  </button>
+                  <NavigationButton
+                    href=""
+                    text="Chat With Us"
+                    icon={<BotIcon size={18} />}
+                    className="px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-800 transition-colors duration-200 text-base"
+                    target="_self"
+                  />
+                  <NavigationButton
+                    href="mailto:"
+                    text="Email Us"
+                    icon={<Mail size={18} />}
+                    className="px-6 py-3 bg-white text-black border-2 border-black rounded-xl hover:bg-gray-50 transition-colors duration-200 text-base"
+                    target="_self"
+                  />
                 </div>
               </div>
             </div>
